@@ -1,0 +1,31 @@
+def flames(name1, name2):
+  """Calculates the FLAMES result for two given names."""
+
+  name1 = name1.lower()
+  name2 = name2.lower()
+
+  # Remove common letters
+  for char in name1:
+    if char in name2:
+      name1 = name1.replace(char, '', 1)
+      name2 = name2.replace(char, '', 1)
+
+  # Count remaining letters
+  count = len(name1 + name2)
+
+  # FLAMES string
+  flames = "flames"
+
+  # Remove letters based on count
+  while len(flames) > 1:
+    index = (count - 1) % len(flames)
+    flames = flames[:index] + flames[index+1:]
+
+  return flames
+
+# Example usage
+player1 = input("Enter player 1's name: ")
+player2 = input("Enter player 2's name: ")
+
+result = flames(player1, player2)
+print("Relationship status:", result)
